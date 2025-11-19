@@ -1,0 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package CA_2;
+
+/**
+ *
+ * @author Giu
+ */
+public class ContractEmployee extends Employee { // Child class that inherits from Employee.
+    
+    public ContractEmployee() { // Contructor that creates a new ContractEmployee object.
+        super("Contract"); //Call the parent class constructor with "Contract" as parameter.
+    }
+    
+    @Override
+    public String getDescription() { //Provides specific description for Contract.
+        return "Contract Employee - Fixed-term contract worker.";
+    }
+}
