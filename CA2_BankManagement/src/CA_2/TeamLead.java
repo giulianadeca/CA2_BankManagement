@@ -18,5 +18,4 @@ public class TeamLead extends Manager { //child class that inherits from Manager
     public String getDescription(){
         return "Team Lead - Supervises a Team of employees in a specific area.";
     }
-    
 }
