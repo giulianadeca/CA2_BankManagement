@@ -20,9 +20,7 @@ public abstract class Manager { //Abstract parent class that stores different ty
         return managerType; // return the type of this manager as a string.
     }
     
-    public abstract String getDescription(); // method that must be implemented by child classes
-    
-    @override //Returns a string representation of this object
+    @Override //Returns a string representation of this object
     public String toString() {
         return managerType;
     }

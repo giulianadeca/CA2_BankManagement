@@ -13,9 +13,4 @@ public class PartTimeEmployee extends Employee { // Child class that inherits fr
     public PartTimeEmployee() { // Contructor that creates a new PartTimeEmployee object.
         super("Part-Time"); //Call the parent class constructor with "Part-Time" as parameter.
     }
-    
-    @Override
-    public String getDescription() { //Provides specific description for Part-Time.
-        return "Part-Time Employee - Works reduced hours.";
-    }
 }

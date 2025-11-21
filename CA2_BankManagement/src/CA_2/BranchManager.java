@@ -13,9 +13,4 @@ public class BranchManager extends Manager { //child class that inherits from Ma
     public BranchManager() { //Contructor that create a new BranchManager object
         super("Branch Manager"); //Call the parent class with "Branch Manager" as parameter
     }
-    
-    @Override //Tells Java that we are implementing the parent's abstract method
-    public String getDescription(){
-        return "Branch Manager - Responsible for day-to-day operations of a branch.";
-    }
 }

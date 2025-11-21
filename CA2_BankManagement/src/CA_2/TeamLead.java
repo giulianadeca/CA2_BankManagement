@@ -13,9 +13,4 @@ public class TeamLead extends Manager { //child class that inherits from Manager
     public TeamLead() { //Contructor that create a new TeamLead object
         super("Team Lead"); //Call the parent class with "Team Lead" as parameter
     }
-    
-    @Override //Tells Java that we are implementing the parent's abstract method
-    public String getDescription(){
-        return "Team Lead - Supervises a Team of employees in a specific area.";
-    }
 }

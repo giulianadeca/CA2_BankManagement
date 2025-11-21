@@ -13,9 +13,4 @@ public class LoansDepartment extends Department { // Child class that inherits f
     public LoansDepartment() { // Contructor that creates a new LoansDepartment object.
         super("Loans"); //Call the parent class constructor with "Loans" as parameter
     }
-    
-    @Override
-    public String getDescription() { //Provides specific description for Loans Department.
-        return "Loans Department - Processes loan applications and manages credits.";
-    }
 }

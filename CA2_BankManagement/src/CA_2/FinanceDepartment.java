@@ -12,11 +12,5 @@ public class FinanceDepartment extends Department { // Child class that inherits
     
     public FinanceDepartment() { // Contructor that creates a new FinanceDepartment object.
         super("Finance"); //Call the parent class constructor with "Finance" as parameter
-    }
-    
-    @Override
-    public String getDescription() { //Provides specific description for Finance Department.
-        return "Finance Department - Oversees financial planning and accounting.";
-    }
-    
+    }    
 }

@@ -13,9 +13,4 @@ public class ContractEmployee extends Employee { // Child class that inherits fr
     public ContractEmployee() { // Contructor that creates a new ContractEmployee object.
         super("Contract"); //Call the parent class constructor with "Contract" as parameter.
     }
-    
-    @Override
-    public String getDescription() { //Provides specific description for Contract.
-        return "Contract Employee - Fixed-term contract worker.";
-    }
 }

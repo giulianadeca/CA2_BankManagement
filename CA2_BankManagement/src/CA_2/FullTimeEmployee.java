@@ -13,9 +13,4 @@ public class FullTimeEmployee extends Employee { // Child class that inherits fr
     public FullTimeEmployee() { // Contructor that creates a new FullTimeEmployee object.
         super("Full-Time"); //Call the parent class constructor with "Full-Time" as parameter.
     }
-    
-    @Override
-    public String getDescription() { //Provides specific description for Full-Time.
-        return "Full-Time Employee - Permanent staff with full benefits.";
-    }
 }

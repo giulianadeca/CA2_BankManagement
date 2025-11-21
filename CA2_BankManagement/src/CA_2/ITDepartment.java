@@ -13,9 +13,4 @@ public class ITDepartment extends Department { // Child class that inherits from
     public ITDepartment() { // Contructor that creates a new ITDepartment object.
         super("IT"); //Call the parent class constructor with "IT" as parameter
     }
-    
-    @Override
-    public String getDescription() { //Provides specific description for IT Department.
-        return "IT Department - Manages technology infrastructure and systems.";
-    }
 }

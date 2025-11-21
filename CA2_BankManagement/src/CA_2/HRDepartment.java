@@ -13,9 +13,4 @@ public class HRDepartment extends Department { // Child class that inherits from
     public HRDepartment() { // Contructor that creates a new HRDepartment object.
         super("HR"); //Call the parent class constructor with "HR" as parameter
     }
-    
-    @Override
-    public String getDescription() { //Provides specific description for HR Department.
-        return "HR Department - Handles recruitment, training, and employee relations.";
-    }
 }

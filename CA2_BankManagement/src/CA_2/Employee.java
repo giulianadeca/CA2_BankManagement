@@ -20,8 +20,6 @@ public abstract class Employee { // Parent Class that serves as a base for diffe
         return employeeType; // return the name of this employee type as a String.
     }
     
-    public abstract String getDescription();
-    
     @Override // Return a String representation of this object
     public String ToString() {
         return employeeType; // return the employee typee as a String

@@ -20,8 +20,6 @@ public abstract class Department { // Parent Class that serves as a base for dif
         return departmentName; // return the name of this department as a String.
     }
     
-    public abstract String getDescription();
-    
     @Override // Return a String representation of this object
     public String toString() {
         return departmentName; // return the department name as a string
