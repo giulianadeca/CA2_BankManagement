@@ -1,0 +1,21 @@
+First name,Last name,Gender,Email,Salary,Department,Position,Job title,Branch
+Giuliana,Cardoso,Female,gcardoso@cctbank.ie,75000.00,Loans,,Senior Manager,Dublin City Centre
+Kristen,Ashley,Female,kashley@cctbank.ie,58000.00,Finance,,Branch Manager,Grafton Street
+Angela,Verdenius,Female,averdenius@cctbank.ie,45000.00,IT,senior,Full-stack Developer,Dublin City Centre
+Anna,Hackett,Female,ahackett@cctbank.ie,38000.00,Finance,middle,Financial Analyst,Grafton Street
+Christine,Feehan,Female,cfeehan@cctbank.ie,52000.00,Loans,senior,Credit Analyst,Temple Bar
+Diana,Palmer,Female,dpalmer@cctbank.ie,48000.00,HR,,Manager,Dublin City Centre
+Faith,Gibson,Female,fgibson@cctbank.ie,42000.00,Finance,senior,Senior Accountant,Ballsbridge
+Ilona,Andrews,Female,iandrews@cctbank.ie,68000.00,Loans,,Head Manager,O'Connell Street
+Jamie,Begley,Female,jbegley@cctbank.ie,35000.00,HR,middle,HR Coordinator,Grafton Street
+Julia,Quinn,Female,jquinn@cctbank.ie,41000.00,IT,middle,Systems Analyst,Dublin City Centre
+Laurann,Dohner,Female,ldohner@cctbank.ie,55000.00,Finance,,Manager,Temple Bar
+Lora,Leigh,Female,lleigh@cctbank.ie,32000.00,Loans,junior,Loan Officer,Ballsbridge
+Meg,Cabot,Female,mcabot@cctbank.ie,29000.00,HR,junior,HR Assistant,O'Connell Street
+Nora,Roberts,Female,nroberts@cctbank.ie,62000.00,Finance,,Senior Manager,Dublin City Centre
+R.L.,Mathewson,Male,rmathewson@cctbank.ie,44000.00,IT,senior,Backend Developer,Grafton Street
+Henry,Cavil,Male,hcavil@cctbank.ie,71000.00,Loans,,Branch Manager,Ballsbridge
+Sarah,Maas,Female,smaas@cctbank.ie,36000.00,IT,middle,Frontend Developer,Temple Bar
+Harlan,Coben,Male,hcoben@cctbank.ie,49000.00,Finance,senior,Risk Analyst,O'Connell Street
+James,Patterson,Male,jpatterson@cctbank.ie,53000.00,IT,senior,Database Administrator,Dublin City Centre
+Angela,Cardoso,Female,acardoso@cctbank.ie,67000.00,Loans,,Manager,Grafton Street

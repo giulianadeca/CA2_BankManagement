@@ -19,12 +19,12 @@ public class Person { //Following Taufique's .txt
     private String department;
     private String position;
     private String jobTitle;
-    private String company;
+    private String branch;
     
     
     //Constructors to create a new person object.  
     public Person(String firstName, String lastName, String gender, String email, double salary, 
-            String department, String position, String jobTitle, String company) {
+            String department, String position, String jobTitle, String branch) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -33,7 +33,7 @@ public class Person { //Following Taufique's .txt
         this.department = department;
         this.position = position;
         this.jobTitle = jobTitle;
-        this.company = company;        
+        this.branch = branch;        
     }
     
     // Getter nwthods for the attributes. 
@@ -71,8 +71,8 @@ public class Person { //Following Taufique's .txt
         return jobTitle;
     }
     
-    public String getCompany() {
-        return company;
+    public String getBranch() {
+        return branch;
     }
     
     public boolean isManager() {
@@ -100,7 +100,7 @@ public class Person { //Following Taufique's .txt
                 department, 
                 isManager() ? "Manager: " + jobTitle : position + " - " + jobTitle,  //This is a ternary operator: Condition ? valueIfTrue : valueIfFalse
                 salary,
-                company);
+                branch);
     }
     
     public void printDetails() { // display all information
@@ -112,7 +112,7 @@ public class Person { //Following Taufique's .txt
         System.out.println("Department: " + department);
         System.out.println("Position:   " + getEmployeeType());
         System.out.println("Job Title:  " + jobTitle);
-        System.out.println("Company:    " + company);
+        System.out.println("Branch:    " + branch);
         if (isManager()) {
             System.out.println("Role:       Manager (" + getManagerType() + ")");
         }
