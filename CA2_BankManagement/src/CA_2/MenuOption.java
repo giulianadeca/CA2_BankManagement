@@ -68,7 +68,7 @@ public enum MenuOption {
             }
         }
         System.out.println(EXIT.getCode() + ". " + EXIT.getDescription()); // Code 0 is special. It will be ALWAYS at bottom.
-        System.out.println("═══════════════════════════════════════ /n");
+        System.out.println("═══════════════════════════════════════");
         System.out.print("Enter your choice: ");
     }
 }
