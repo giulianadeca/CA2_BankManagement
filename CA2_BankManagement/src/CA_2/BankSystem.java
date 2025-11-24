@@ -99,14 +99,56 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
                 }
 
                 case SEARCH -> {
+                    
+                    /**
+                     * Searches for an employee by name.
+                     * ****** IMPORTANT: List must be sorted first for Binary Search work!
+                     */
                     System.out.println("═════════════════════════════════════════════");
                     System.out.println("  Search for Employee");
                     System.out.println("═════════════════════════════════════════════");
                     System.out.println();
-
-                    System.out.println("Search feature will be implemented soon.");
-                    System.out.println("Will use: Binary Search or Linear Search");
-                    System.out.println("Current employees loaded: " + employeeList.size());
+                    
+                    //Check if there are employees to be searched. 
+                    if (employeeList.isEmpty()) {
+                        System.out.println("");
+                        System.out.println();
+                        break; //If the list is empty, we exit this case and return to the menu. 
+                    }
+                    
+                    //If the list is !empty, we ask the name from user. 
+                    System.out.println("Tip: Make sure the list is sorted first (Option 1)");
+                    System.out.println("Enter employee name to search: ");
+                    String searchName = myKb.nextLine().trim();
+                    System.out.println();
+                    
+                    
+                    //Validation to handle in case the user dont input a name.
+                    if (searchName.isEmpty()) {
+                        System.out.println("❌ Name cannot be empty!");
+                        System.out.println();
+                        break; // Exit this case and return to menu. 
+                    }
+                    
+                    //Search using Binary Search algorithm
+                    System.out.println("Searching for: " + searchName);
+                    //Call binarySearch: start=0, end=list.size()-1
+                    // This method returns the index if found, or -1 if not found. 
+                    int result = binarySearch(employeeList, searchName, 0, employeeList.size() - 1);
+                    
+                    //Check the result and display appropriate message
+                    if (result == -1) {
+                        //Employee was not found, this means that the binarySearch returned -1. 
+                        System.out.println("❌ Employee not found: " + searchName);
+                        System.out.println();
+                    } else {
+                        //Employee was found, which means that the binarySearch returned a valid index. 
+                        System.out.println("Employee Found!");
+                        System.out.println();
+                        //Them it will display the employee full details. Using printDetails() method that I created in Person class. 
+                        employeeList.get(result).printDetails();
+                    }
+                    System.out.println();
                 }
 
                 case ADD_RECORDS -> {
@@ -233,6 +275,7 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
             return;
         }
         
+        //Start the Recursive case!
         //Divide Case: Split the list into two halves that are as equal in length as possible.
         int middle = (start + end) / 2; // start = 0 ; end = 19.
         
@@ -311,6 +354,40 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
         }
         if (employeeList.size() > howMany) {
             System.out.println("... and " + (employeeList.size() - howMany) + " more.");
+        }
+    }
+    
+    private static int binarySearch(ArrayList<Person> list, String name, int start, int end) {
+        
+        //Base Case: if the start index in greater than end index, this means that we've search the entire range and didnt find de name. 
+        if (start > end) {
+            return -1; //Return -1 to indicate
+        }
+        
+        //Recursive case: hen we still have elements to search
+        
+        //Step 1: Need to find the middle position of de current search range. 
+        int middle = (start + end) / 2; //in our case: start=0 and end =19, so the middle=9
+        
+        //Step 2: Need to get the full name of the person at the middle position.
+        String middleName = list.get(middle).getFullName();
+        
+        //Step 3: Need to compare the searchName with the middleName.
+        int comparison = name.compareToIgnoreCase(middleName);
+        /**
+         * In this case .compareToIgnoreCase() returns:
+         *  -1: if 'name' comes before 'middleName'
+         *   0: if they are igual. It means that we found it!
+         *  +1: if 'name' comes after 'middleName'
+         */
+        
+        //Step 4: Based on comparison result, decide what to do
+        if (comparison == 0) {
+            return middle;
+        } else if (comparison < 0) {
+            return binarySearch(list, name, start, middle -1);
+        } else {
+            return binarySearch(list, name, middle +1, end);
         }
     }
 }
