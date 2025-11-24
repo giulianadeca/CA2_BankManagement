@@ -66,13 +66,36 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
             switch (option) {
                 case SORT -> {
                     System.out.println("═════════════════════════════════════════════");
-                    System.out.println("  Sort Employees");
+                    System.out.println("Sort Employees in Alphabetical Order");
                     System.out.println("═════════════════════════════════════════════");
                     System.out.println();
-
-                    System.out.println("Sorting feature will be implemented soon.");
-                    System.out.println("Will use: Recursive sorting (MergeSort or QuickSort)");
-                    System.out.println("Current employees loaded: " + employeeList.size());
+                    
+                    if (employeeList.isEmpty()) { // If the list has only one element, return the list and terminate. (Base case)
+                        System.out.println("❌ No employees to sort! Please load data first.");
+                        System.out.println();
+                        break;
+                    }
+                    
+                    //Display list before sorting. Just the first 5 for context. 
+                    System.out.println("─────────────────────────────────────────────");
+                    System.out.println("BEFORE SORTING:");
+                    System.out.println("─────────────────────────────────────────────");
+                    showEmployees(5);
+                    System.out.println();
+                    
+                    //Do the sort
+                    System.out.println("Sorting...");
+                    mergeSort(employeeList, 0, employeeList.size() -1);
+                    System.out.println();
+                    
+                    //Show after
+                    System.out.println("─────────────────────────────────────────────");
+                    System.out.println("AFTER SORTING: ");
+                    System.out.println("─────────────────────────────────────────────");
+                    showEmployees(20);
+                    System.out.println();
+                    System.out.println("Sorted " + employeeList.size() + " employees alphabetically");
+                    System.out.println();
                 }
 
                 case SEARCH -> {
@@ -197,5 +220,97 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
             return false;
         }
         return false;
+    }
+    
+    private static void mergeSort(ArrayList<Person> list, int start, int end) {
+        /**
+         * mergeSort is the main method, where we will sort alphabetically by name.
+         * It recursively divides the list (right and left side) and merges back in order.
+         */
+        
+        //Base Case: If the list has only one element, return the list and terminate. Because de list is already sorted.
+        if (start >= end) {
+            return;
+        }
+        
+        //Divide Case: Split the list into two halves that are as equal in length as possible.
+        int middle = (start + end) / 2; // start = 0 ; end = 19.
+        
+        // Conquer Case: Using recursion, sort both lists using mergesort.
+        //Sort left half
+        mergeSort(list, start, middle); // start = 0 , middle = 9.5 --> From Giuliana Cardoso to Julia Quinn.
+        
+        //Sort right half
+        mergeSort(list, middle + 1, end); // middle + 1 = 9.5 + 1 = 10.5, end = 19 --> From Laurann Dohner to Angela Cardoso. 
+        
+        //Combine Case: Merge the two sorted lists and return the result.
+        //Merge both halves
+        merge(list, start, middle, end);
+    }
+    
+    private static void merge(ArrayList<Person> list, int start, int middle, int end) {
+        // merge method, combines the two sorted halves into one sorted section.
+        
+        //Create temporary lists for left and right halves.
+        ArrayList<Person> left = new ArrayList<>();
+        ArrayList<Person> right = new ArrayList<>();
+        
+        //Copy data to left temporary list
+        for (int i = start; i<= middle; i++) {
+            left.add(list.get(i));
+        }
+        
+        //Copy data to ight temporary list
+        for (int i = middle + 1; i<= end; i++) {
+            right.add(list.get(i));
+        }
+        
+        //Merge the two lists back into the original list (Only 1 arrayList).
+        int i = 0; //index for left list;
+        int j = 0; //index for right list
+        int k = start; // index for original list.
+        
+        //Here we start to compare and merge the lists.
+        while (i < left.size() && j < right.size()) {
+            String name1 = left.get(i).getFullName();
+            String name2 = right.get(j).getFullName();
+            
+            //Start to compare names alphabetically
+            if (name1.compareToIgnoreCase(name2) <= 0) {
+                list.set(k, left.get(i));
+                i++;
+            } else {
+                list.set(k, right.get(j));
+                j++;
+            }
+                k++;
+        }
+        
+        //Copy remaining elements from left. 
+        while (i < left.size()) {
+            list.set(k, left.get(i));
+            i++;
+            k++;
+        }
+        
+        //Copy remaining elements from right.
+        while (j < right.size()) {
+            list.set(k, right.get(j));
+            j++;
+            k++;
+        }
+    }
+    
+    private static void showEmployees(int howMany) {
+        // Helper method to display the employees. 
+        
+        int count = Math.min(howMany, employeeList.size());
+        
+        for (int i = 0; i < count; i++) {
+            System.out.println((i + 1) + ". " + employeeList.get(i).toString());
+        }
+        if (employeeList.size() > howMany) {
+            System.out.println("... and " + (employeeList.size() - howMany) + " more.");
+        }
     }
 }
