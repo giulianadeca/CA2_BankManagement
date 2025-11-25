@@ -266,7 +266,7 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
                     //Insert all employees into the tree
                     for (Person person : employeeList) {
                         String name = person.getFullName();
-                        String managerType = person.getJobTitle();
+                        String managerType = person.getManagerType();
                         String department = person.getDepartment();
                         
                         root = insertLevelOrder(root, name, managerType, department);
@@ -295,9 +295,22 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
                     System.out.println("═════════════════════════════════════════════");
                     System.out.println();
 
-                    System.out.println("Tree must be created first (Option 4).");
-                    System.out.println("Will show: Preorder, Inorder, Postorder traversals");
-                    System.out.println("Plus: Tree height and node count");
+                    // Check if tree exists
+                    if (root == null) {
+                        System.out.println("❌ Error: Tree has not been created yet!");
+                        System.out.println("Please use option 4 (Create Tree) first.");
+                        System.out.println();
+                        break;
+                    }
+                    
+                    // Display tree using level-order traversal
+                    System.out.println("Employee Hierarchy (Level-Order):");
+                    System.out.println("═════════════════════════════════════════════");
+                    System.out.printf("%-25s | %-20s | %-20s%n", "NAME", "MANAGER TYPE", "DEPARTMENT");
+                    System.out.println("─────────────────────────────────────────────");
+                    displayLevelOrder(root);
+                    System.out.println("═════════════════════════════════════════════");
+                    System.out.println();
                 }
 
                 case EXIT -> {
@@ -585,6 +598,43 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
         
         // Recursive case: 1 (current) + count of left subtree + count of right subtree
         return 1 + countNodes(node.left) + countNodes(node.right);
+    }
+    
+    private static void displayLevelOrder(TreeNode root) {
+        // Check if tree exists
+        if (root == null) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+        
+        // Use Queue for level-order traversal
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);  // Start with root
+        
+        int nodeCount = 0;  // Counter for displaying node numbers
+        
+        // Process queue until empty
+        while (!queue.isEmpty()) {
+            // Get and remove front node
+            TreeNode current = queue.poll();
+            
+            // Display this node
+            nodeCount++;
+            System.out.print(String.format("%-4d. ", nodeCount));
+            current.displayNode();
+            
+            // Add left child to queue (if exists)
+            if (current.left != null) {
+                queue.offer(current.left);
+            }
+            
+            // Add right child to queue (if exists)
+            if (current.right != null) {
+                queue.offer(current.right);
+            }
+            
+            // Continue to next node in queue
+        }
     }
     
 }
