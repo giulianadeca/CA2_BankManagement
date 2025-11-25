@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
 
 /**
  *
@@ -18,7 +20,9 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
     //Attributes
     private static ArrayList<Person> employeeList = new ArrayList<>(); //employeeList is a ArrayList that store all employees loaded from the file + the one that we added manually.  
 
-    private static ArrayList<Person> newRecords = new ArrayList<>();
+    private static ArrayList<Person> newRecords = new ArrayList<>(); //newRecords is a ArrayList that stores all added employees. 
+    
+    private static TreeNode root = null; // 
 
     public static void main(String[] args) {
 
@@ -246,9 +250,43 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
                     System.out.println("═════════════════════════════════════════════");
                     System.out.println();
 
-                    System.out.println("Binary tree feature will be implemented soon.");
-                    System.out.println("Will use: Level-order insertion (breadth-first)");
-                    System.out.println("Current employees loaded: " + employeeList.size());
+                    //Check if we have 20 employees
+                    if (employeeList.size() < 20) {
+                        System.out.println("❌ Error: Need at least 20 employees to create tree!");
+                        System.out.println("Current employees: " + employeeList.size());
+                        System.out.println("Please load more data or add more employees.");
+                    }
+                    
+                    root = null; //We need to clean any existing tree.
+                    
+                    System.out.println("Building binary tree with " + employeeList.size() + " employees.");
+                    System.out.println("Using level-order (breadth-first insertion...");
+                    System.out.println();
+                    
+                    //Insert all employees into the tree
+                    for (Person person : employeeList) {
+                        String name = person.getFullName();
+                        String managerType = person.getJobTitle();
+                        String department = person.getDepartment();
+                        
+                        root = insertLevelOrder(root, name, managerType, department);
+                    }
+                    
+                    //calculate tree statistics
+                    int height = getHeight(root);
+                    int totalNodes = countNodes(root);
+                    
+                    //Display results
+                    System.out.println("Binary tree created successfully!");
+                    System.out.println();
+                    System.out.println("─────────────────────────────────────────────");
+                    System.out.println("Tree Statistics");
+                    System.out.println("─────────────────────────────────────────────");
+                    System.out.println("Total Nodes:  " + totalNodes);
+                    System.out.println("Tree Height:  " + height);
+                    System.out.println("─────────────────────────────────────────────");
+                    System.out.println();
+                    System.out.println("Use option 5 (Display Tree) to view the hierarchy.");
                 }
 
                 case DISPLAY_TREE -> {
@@ -419,6 +457,7 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
             k++;
         }
     }
+    
     private static void showEmployees(int howMany) {
         // Helper method to display the employees. 
 
@@ -462,6 +501,7 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
             return binarySearch(list, name, middle + 1, end);
         }
     }
+    
     private static String validateManagerType(String choice) {
         return switch (choice) {
             case "1" -> "Branch Manager";
@@ -479,4 +519,72 @@ public class BankSystem { // This is the Main class for the Bank Mangement Syste
             default -> null;
         };
     }
+    
+    private static TreeNode insertLevelOrder(TreeNode root, String name, String managerType, String department) {
+        // Create the new node to insert
+        TreeNode newNode = new TreeNode(name, managerType, department);
+        
+        // CASE 1: Tree is empty - new node becomes root
+        if (root == null) {
+            return newNode;
+        }
+        
+        // CASE 2: Tree exists - use Queue for level-order insertion
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);  // Start with root
+        
+        // Keep searching until we find a spot to insert
+        while (!queue.isEmpty()) {
+            // Get the front node from queue
+            TreeNode current = queue.poll();
+            
+            // Check left child
+            if (current.left == null) {
+                // Found empty left spot - insert here!
+                current.left = newNode;
+                return root;  // Done! Return original root
+            } else {
+                // Left exists - add it to queue to check its children later
+                queue.offer(current.left);
+            }
+            
+            // Check right child
+            if (current.right == null) {
+                // Found empty right spot - insert here!
+                current.right = newNode;
+                return root;  // Done! Return original root
+            } else {
+                // Right exists - add it to queue to check its children later
+                queue.offer(current.right);
+            }
+            
+            // If we reach here, current node has both children
+            // Continue to next node in queue (next level)
+        }
+        
+        return root;
+    }
+    private static int getHeight(TreeNode node) {
+        // Base case: empty tree has height 0
+        if (node == null) {
+            return 0;
+        }
+        
+        // Recursive case: get height of left and right subtrees
+        int leftHeight = getHeight(node.left);
+        int rightHeight = getHeight(node.right);
+        
+        // Height is 1 (current level) + maximum of left/right heights
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+    private static int countNodes(TreeNode node) {
+        // Base case: null node contributes 0 to count
+        if (node == null) {
+            return 0;
+        }
+        
+        // Recursive case: 1 (current) + count of left subtree + count of right subtree
+        return 1 + countNodes(node.left) + countNodes(node.right);
+    }
+    
 }
