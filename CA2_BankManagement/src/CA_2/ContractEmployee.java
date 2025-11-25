@@ -5,8 +5,8 @@
 package CA_2;
 
 /**
- *
- * @author Giu
+ * @author Giuliana Cardoso d'Eça - 2025008
+ * HDip in Computing - Algorithms & Constructs
  */
 public class ContractEmployee extends Employee { // Child class that inherits from Employee.
     

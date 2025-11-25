@@ -12,8 +12,8 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 /**
- *
- * @author Giu
+ * @author Giuliana Cardoso d'Eça - 2025008
+ * HDip in Computing - Algorithms & Constructs
  */
 public class BankSystem { // This is the Main class for the Bank Mangement System.
 
