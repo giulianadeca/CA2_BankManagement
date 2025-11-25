@@ -24,5 +24,4 @@ public abstract class Employee { // Parent Class that serves as a base for diffe
     public String ToString() {
         return employeeType; // return the employee typee as a String
     }
-    
 }

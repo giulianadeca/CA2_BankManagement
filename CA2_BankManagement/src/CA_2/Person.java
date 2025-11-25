@@ -117,6 +117,6 @@ public class Person { //Following Taufique's .txt
             System.out.println("Role:       Manager (" + getManagerType() + ")");
         }
         System.out.println("═══════════════════════════════════════");
-    }
+    }   
     
 }
